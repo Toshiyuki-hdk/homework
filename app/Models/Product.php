@@ -2,14 +2,26 @@
 
 namespace App\Models;
 
+use App\Model\Company;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
+
 
 class Product extends Model
 {
-    public function getList() {
-        $products = DB::table('products')->get();
+   protected $fillable = [
+        'company_id',
+        'product_name',
+        'price',
+        'stock',
+        'comment',
+        'img_path',
+   ];
 
-        return $products;
+    public function company() {
+        return $this->belongsTo('App\Models\Company');
+    }
+
+    public function sales() {
+        return $this->hasMany('App\Models\Sale');
     }
 }

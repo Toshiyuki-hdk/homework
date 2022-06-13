@@ -15,12 +15,15 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('image');
+            $table->unsignedBigInteger('company_id')->comment('会社ID');
             $table->string('product_name');
-            $table->text('price')->nullable();
-            $table->text('number')->nullable();
-            $table->string('name');
+            $table->integer('price')->nullable();
+            $table->integer('stock')->nullable();
+            $table->string('img_path')->nullable();;
+            $table->string('comment')->nullable();
             $table->timestamps();
+
+            $table->foreign('company_id')->references('id')->on('companies');
         });
     }
 
@@ -34,3 +37,4 @@ class CreateProductsTable extends Migration
         Schema::dropIfExists('products');
     }
 }
+
