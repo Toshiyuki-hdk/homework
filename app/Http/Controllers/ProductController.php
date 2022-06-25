@@ -22,12 +22,12 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->input('keyword');
-        $search = $request->input('search');
+        $company_id = $request->input('company_id');
 
         $query = Product::query();
 
-        if (isset($search)) {
-            $query->where('company_name', $search);
+        if (isset($company_id)) {
+            $query->where('company_id', $company_id);
         }
 
         if (isset($keyword)) {
@@ -37,7 +37,7 @@ class ProductController extends Controller
         $products = $query->get();
         $companies = Company::all();
 
-        return view('product.index', compact('products', 'companies', 'keyword', 'search'));
+        return view('product.index', compact('products', 'companies', 'keyword', 'company_id'));
     }
 
     /**
@@ -59,7 +59,16 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        Product::create($request->all());
+        $imgPath = $request->img_path;
+        $path =  $imgPath->store('public/picture');
+        Product::create([
+            'product_name'  => $request->product_name,
+            'company_id'    => $request->company_id,
+            'price'         => $request->price,
+            'stock'         => $request->stock,
+            'comment'       => $request->comment,
+            'img_path'      => $path,
+        ]);
         return redirect()->route('product.index');
     }
 
@@ -119,6 +128,6 @@ class ProductController extends Controller
     public function destroy($id)
     {
         Product::where('id', $id)->delete();
-        return redirect(route('product.index'))->with('success', 'ブログ記事を削除しました');
+        return redirect(route('product.index'));
     }
 }

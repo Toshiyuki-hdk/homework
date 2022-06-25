@@ -9,7 +9,7 @@
 </ul>
 @endif
  
-<form action="{{ route('product.update',$product->id)}}" method="POST">
+<form action="{{ route('product.update',$product->id)}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="form-group">

@@ -10,7 +10,7 @@
 </ul>
 @endif
 
-<form action="{{ route('product.store')}}" method="POST">
+<form action="{{ route('product.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
       <div class="form-group">
         <label for="product_name">商品名</label>
@@ -46,6 +46,6 @@
         <label for="img_path">商品画像</label>
         <input type="file" class="form-control" id="img_path" name="img_path" placeholder="url">
       </div>
-
+      
       <input type="submit" value="登録する">
 </form>

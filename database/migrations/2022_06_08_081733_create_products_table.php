@@ -17,9 +17,9 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('company_id')->comment('会社ID');
             $table->string('product_name');
-            $table->integer('price')->nullable();
-            $table->integer('stock')->nullable();
-            $table->string('img_path')->nullable();;
+            $table->integer('price');
+            $table->integer('stock');
+            $table->string('img_path')->nullable();
             $table->string('comment')->nullable();
             $table->timestamps();
 

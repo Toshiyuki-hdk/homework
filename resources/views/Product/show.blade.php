@@ -12,7 +12,7 @@
     </tr>
     <tr>
         <td>{{ $product->id }}</td>
-        <td>{{ $product->img_path }}</td>
+        <td><img src="{{ Storage::url($product->img_path) }}"></td>
         <td>{{ $product->product_name }}</td>
         <td>{{ $product->company->company_name }}</td>
         <td>{{ $product->price }}</td>
