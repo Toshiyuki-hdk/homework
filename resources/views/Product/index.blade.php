@@ -12,9 +12,9 @@
             <label for="">メーカー名
                 <div>
                     <select name="company_id">
-                        <option value="{{ $company_id }}">全て</option>
-                        @foreach ($products as $product)
-                            <option value="{{ $company_id }}">{{ $product->company->company_name }}</option>
+                        <option value="">全て</option>
+                        @foreach ($companies as $company)
+                            <option value="{{ $company->id }}">{{ $company->company_name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -43,7 +43,7 @@
     @foreach ($products as $product)
     <tr>
         <td>{{ $product->id }}</td>
-        <td><img src="{{ Storage::url($product->img_path) }}"></td>
+        <td><img src="{{ asset($product->img_path) }}"></td>
         <td>{{ $product->product_name }}</td>
         <td>{{ $product->price }}</td>
         <td>{{ $product->stock }}</td>

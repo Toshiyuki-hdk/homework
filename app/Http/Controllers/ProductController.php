@@ -61,6 +61,7 @@ class ProductController extends Controller
     {
         $imgPath = $request->img_path;
         $path =  $imgPath->store('public/picture');
+        $path = 'storage'.str_replace('public','',$path);
         Product::create([
             'product_name'  => $request->product_name,
             'company_id'    => $request->company_id,
